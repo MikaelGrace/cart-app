@@ -1,38 +1,36 @@
-const TableHeader = () => {
+import React, { Component } from 'react';
 
+const TableHeader = () => {
     return (
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Job</th>
-                <th>Remove</th>
             </tr>
         </thead>
     )
-
 }
 
-const TableBody = ({characterData, removeCharacter}) => {
-    const rows = characterData.map((row, index) => {
+const TableBody = (props) => {
+    const rows = props.characterData.map((row, index) => {
         return (
             <tr key={index}>
                 <td>{row.name}</td>
                 <td>{row.job}</td>
-                <button onClick={() => removeCharacter(index)}>Delete</button>
+                <td>
+                    <button onClick={() => props.removeCharacter(index)}>Delete</button>
+                </td>
             </tr>
         )
     })
     return (
-        <tbody>
-            {rows}
-        </tbody>
+        <tbody>{rows}</tbody>
     )
 }
 
-const Table2 = (props) => {
+const Table = (props) => {
+
     const { characterData, removeCharacter } = props
-
-
     return (
         <table>
 
@@ -43,4 +41,4 @@ const Table2 = (props) => {
     );
 }
 
-export default Table2;
+export default Table;
